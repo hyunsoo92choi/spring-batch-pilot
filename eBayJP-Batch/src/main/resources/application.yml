@@ -1,0 +1,91 @@
+########################################################################
+# 공통                                                                                                                                                     #
+########################################################################
+server: 
+#  port: 8050
+  tomcat:
+    uri-encoding: UTF-8
+  session:
+    timeout: 600000000
+    
+tomcat:
+  ajp:
+    protocol: AJP/1.3
+#    port: 8080
+
+
+spring:
+  main.sources: classpath:/launch-context.xml
+  application:
+    name: eBayJP-batch
+  profiles:
+    active: local
+    
+  batch.job.enabled: false
+  messages.basename: messages/messages
+  pid.file: ${spring.application.name}.pid
+  
+  session:
+    store-type: none
+  thymeleaf:
+    enabled: false
+
+endpoints:
+  sensitive: false
+  shutdown:
+    enabled: true
+    sensitive: false
+  health:
+    enabled: true
+    sensitive: false
+  info:
+    enabled: true
+    sensitive: false
+
+batch.output.root: /output
+batch.input.root: /input
+batch.properties.root: /properties/
+
+mybatis:
+  type_handlers: com.lotte.batch.app.payment.typehandler
+---  
+########################################################################
+# 로컬                                                                                                                                                     #
+########################################################################
+
+spring:
+  profiles: local
+  
+  batch:
+    proc-cnt: 10000
+    prd-proc-cnt: 1000
+    #initializer.enabled: false
+    channel: 100207
+    
+batch:
+  datasource:             
+    Master: # 
+      url: jdbc:mysql://localhost:3306/springbatch
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: pw123
+#     initSQL: select 1   
+      test-on-borrow: true
+      test-on-return: true
+      test-while-idle: true       
+      config-location: classpath:mapper/mybatis-config.xml
+      mapper-locations: classpath:mapper/*Mapper.xml    
+      
+
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.eBay.batch: debug
+    org.springframework: info
+    org.mybatis: debug
+    jdbc.sqlonly: OFF
+    jdbc.sqltiming: DEBUG
+    jdbc.audit: off
+    jdbc.resultset: off  
+    jdbc.resultsettable: debug
+    jdbc.connection: off           
