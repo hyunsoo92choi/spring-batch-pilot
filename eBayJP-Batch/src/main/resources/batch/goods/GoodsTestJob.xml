@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
-	xsi:schemaLocation="
+	xsi:schemaLocation="http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <!-- step 2 batch START -->
-    <!-- 작업 스텝은 one step으로 개발함. -->
     <batch:job id="goodsTestJob" parent="abstractJob" xmlns="http://www.springframework.org/schema/batch">
-        <batch:step id="GoodsTestjobStep"  parent="abstractStep" >
+        
+        <batch:step id="GoodsTestjobStep" parent="abstractStep">
             <batch:tasklet ref="GoodsTestJobTasklet"></batch:tasklet>
         </batch:step>
+        
+        <!--Listener -->
+        <listeners>
+            <listener ref="JobCompletionNotificationListener"/>
+        </listeners>          
     </batch:job>
+    
     <!-- 작업 Service 호출을 위한 Tasklet 지정 -->
     <bean id="GoodsTestJobTasklet" class="com.eBay.batch.app.goods.testbatch.tasklet.GoodsTestJobTasklet"/>
     
+    <!-- Listener Bean Injection -->
+    <bean id="JobCompletionNotificationListener"
+    	class="com.eBay.batch.common.listener.JobCompletionNotificationListener">
+    </bean>
 
 </beans>

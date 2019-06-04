@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.listener.StepListenerSupport;
+import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <pre>
@@ -15,6 +18,7 @@ import org.springframework.batch.core.listener.StepListenerSupport;
  * @date : 2019. 5. 27. 
  * @author : hychoi
  */
+//@Component
 public class DefaultStepListener <T, S> extends StepListenerSupport <T, S> {
 	
 	protected final Logger logger = LoggerFactory.getLogger(getClass());

@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.eBay.batch.app.goods.testbatch.dao.GoodsTestSearchDAO">
-	<select id="getGoodsList" parameterType="com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto" resultType="com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto">
+	<select id="getGoodsList" parameterType="com.eBay.batch.app.goods.testbatch.dto.RequestGoodsTestJobDto" resultType="com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto">
         <!-- SELECT /*+ [ebay-batch-goods].testbatch.dao.GoodsSelectDAO.getGoodsList */
                GOODS_NO,
 			   GOODS_NM
-          FROM goods
+          FROM GOODS
         <where>
-           AND GOODS_NO = #{goodsNo}
+           AND GD_NO = #{goodsNo}
         </where> -->
         SELECT	1
         FROM	DUAL

@@ -1,4 +1,4 @@
-package com.eBay.batch.common.batchconst;
+package com.eBay.batch.common.consts;
 
 import java.io.Serializable;
 

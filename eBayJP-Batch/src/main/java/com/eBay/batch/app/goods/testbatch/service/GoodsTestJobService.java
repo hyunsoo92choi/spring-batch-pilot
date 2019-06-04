@@ -3,6 +3,7 @@ package com.eBay.batch.app.goods.testbatch.service;
 import java.util.List;
 
 import com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto;
+import com.eBay.batch.app.goods.testbatch.dto.RequestGoodsTestJobDto;
 
 /**
  * <pre>
@@ -12,5 +13,5 @@ import com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto;
  * @author : hychoi
  */
 public interface GoodsTestJobService {
-	public List<GoodsTestJobDto> getGoodsList(GoodsTestJobDto goodsTestJobDto);
+	public List<GoodsTestJobDto> getGoodsList(RequestGoodsTestJobDto requestGoodsTestJobDto);
 }

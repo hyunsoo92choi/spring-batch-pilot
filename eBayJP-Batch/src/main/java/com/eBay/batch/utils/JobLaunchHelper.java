@@ -11,9 +11,9 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.eBay.batch.common.batchconst.BatchConst;
 import com.eBay.batch.common.batchlog.BatchLog;
 import com.eBay.batch.common.batchlog.BatchLogStorage;
+import com.eBay.batch.common.consts.BatchConst;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,7 +42,9 @@ public class JobLaunchHelper {
 			JobExecution je = jobLauncher.run(job, jobParams);
 
 			if (batchLogStorage.containsKey(jobName)) {
+				
 				BatchLog batchLog = batchLogStorage.batchLog(jobName);
+				
 				if (batchLog.getShowResult()) {
 				    batchLog.add("==================================================================");
 				    batchLog.add("  total:" + batchLog.getTotalCnt() + ",error:" + batchLog.getErrorCnt());

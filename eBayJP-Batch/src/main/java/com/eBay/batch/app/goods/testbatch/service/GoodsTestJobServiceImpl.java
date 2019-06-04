@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.eBay.batch.app.goods.testbatch.dao.GoodsTestSearchDAO;
 import com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto;
-import com.eBay.batch.config.EnvConfig;
+import com.eBay.batch.app.goods.testbatch.dto.RequestGoodsTestJobDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,10 +29,10 @@ public class GoodsTestJobServiceImpl implements GoodsTestJobService {
 	GoodsTestSearchDAO goodsTestSearchDAO;
 	
 	@Override
-	public List<GoodsTestJobDto> getGoodsList(GoodsTestJobDto goodsTestJobDto) {
-		logger.warn("############ Service start #############");
-		List<GoodsTestJobDto> testJobResult = goodsTestSearchDAO.getGoodsList(goodsTestJobDto);
-		logger.warn("############ Service 5 end #############");
+	public List<GoodsTestJobDto> getGoodsList(RequestGoodsTestJobDto requestGoodsTestJobDto) {
+		
+		List<GoodsTestJobDto> testJobResult = goodsTestSearchDAO.getGoodsList(requestGoodsTestJobDto);
+		
 		return testJobResult;
 	}
 

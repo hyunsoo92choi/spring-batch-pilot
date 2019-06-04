@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto;
+import com.eBay.batch.app.goods.testbatch.dto.RequestGoodsTestJobDto;
 
 /**
  * <pre>
@@ -17,5 +18,5 @@ import com.eBay.batch.app.goods.testbatch.dto.GoodsTestJobDto;
 @Mapper
 @Repository
 public interface GoodsTestSearchDAO {
-	public List<GoodsTestJobDto> getGoodsList(GoodsTestJobDto goodsTestJobDto);
+	public List<GoodsTestJobDto> getGoodsList(RequestGoodsTestJobDto requestGoodsTestJobDto);
 }

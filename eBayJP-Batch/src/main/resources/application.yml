@@ -29,6 +29,7 @@ spring:
     store-type: none
   thymeleaf:
     enabled: false
+spring.batch.job.names: ${job.name:NONE}
 
 endpoints:
   sensitive: false
@@ -47,7 +48,7 @@ batch.input.root: /input
 batch.properties.root: /properties/
 
 mybatis:
-  type_handlers: com.lotte.batch.app.payment.typehandler
+  type_handlers: com.eBay.batch.typehandler
 ---  
 ########################################################################
 # 로컬                                                                                                                                                     #
@@ -76,6 +77,15 @@ batch:
       config-location: classpath:mapper/mybatis-config.xml
       mapper-locations: classpath:mapper/*Mapper.xml    
       
+batcherror: 
+  beforeerror: #
+    title: Batch ERROR
+    receive: batch-logging
+      
+  aftererror:
+    title: Batch ERROR
+    receive: 
+            
 
 logging:
   config: classpath:logback-spring.xml
@@ -89,3 +99,5 @@ logging:
     jdbc.resultset: off  
     jdbc.resultsettable: debug
     jdbc.connection: off           
+
+spring.main.allow-bean-definition-overriding: true
