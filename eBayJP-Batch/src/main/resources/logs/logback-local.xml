@@ -63,7 +63,7 @@
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<pattern>%-4relative [%thread] %-5level %class - %msg%n</pattern>
 		</layout>
-		<webhookUri>https://hooks.slack.com/services/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</webhookUri>
+		<webhookUri>url</webhookUri>
 		<username>batch-logger</username>
 		<iconEmoji>:stuck_out_tongue_winking_eye:</iconEmoji>
 		<colorCoding>true</colorCoding>
@@ -74,6 +74,7 @@
 		<appender-ref ref="SLACK" />
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>WARN</level>
+			<!-- <level>ERROR</level> -->
 		</filter>
 	</appender>
 
@@ -97,13 +98,13 @@
 
 	<logger name="com.eBay.batch" level="ERROR" additivity="false">
 		<appender-ref ref="file-error" />
-		<appender-ref ref="ASYNC_SLACK"/>
+		<!-- <appender-ref ref="ASYNC_SLACK"/> -->
 	</logger>
 
 
 	<logger name="org.springframework" level="ERROR" additivity="false">
 		<appender-ref ref="file-error" />
-		<appender-ref ref="ASYNC_SLACK"/>
+		<!-- <appender-ref ref="ASYNC_SLACK"/> -->
 	</logger>
 
 	<root level="INFO">

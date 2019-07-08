@@ -39,7 +39,7 @@ public class SlackAlramService implements AlramService {
 	 * @param receive (CHANNELS --- See SlackConst)
 	 * @param alramTitle (알람제목 Ex BatchJob Name Start, Complete, Fail ) 
 	 * @param alramMessage 메시지 내용
-	 * @param templatePath 파일 경로 or stackTrace 등  
+	 * @param somethingUwant 파일 경로 or stackTrace 등  
 	 * @return
 	 */ 	
 	@Override
@@ -61,12 +61,30 @@ public class SlackAlramService implements AlramService {
 		return send(target, attachment);
 	}
 	
+	/**
+	 * <pre>
+	 * 1. 개요 : Post 방식으로 Slack incoming webhook 호출
+	 * 2. 처리내용 : slack url, attatchment Dto에 담긴 내용으로 REST 호출
+	 * </pre>
+	 * @Method Name : send
+	 * @date : 2019. 6. 5.
+	 * @author : hychoi
+	 * @history : 
+	 *	-----------------------------------------------------------------------
+	 *	변경일				작성자						변경내용  
+	 *	----------- ------------------- ---------------------------------------
+	 *	2019. 6. 5.		hychoi				최초 작성 
+	 *	-----------------------------------------------------------------------
+	 * 
+	 * @param target
+	 * @param object
+	 * @return boolean
+	 */ 	
 	public boolean send(SlackTargetEnum target, SlackAttachment object) {
 		RestTemplate restTemplate  = new RestTemplate();
 		
 	    try {
 	        restTemplate.postForObject(target.getWebHookUrl(), object, String.class);
-
 	        return true;
 	    } catch (Exception e) {
 	    	logger.error("Occur Exception: {}", e);

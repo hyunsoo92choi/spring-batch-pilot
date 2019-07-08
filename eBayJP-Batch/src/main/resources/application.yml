@@ -78,7 +78,7 @@ batch:
       mapper-locations: classpath:mapper/*Mapper.xml    
       
 batcherror: 
-  beforeerror: #
+  beforeerror: 
     title: Batch ERROR
     receive: batch-logging
       
